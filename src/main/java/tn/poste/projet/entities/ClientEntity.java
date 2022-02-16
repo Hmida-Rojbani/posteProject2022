@@ -11,6 +11,7 @@ import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.extern.log4j.Log4j2;
 
 @Entity
 @Table(name = "client")
