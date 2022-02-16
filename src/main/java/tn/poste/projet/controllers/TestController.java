@@ -1,6 +1,5 @@
 package tn.poste.projet.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,13 +7,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.extern.log4j.Log4j2;
 import tn.poste.projet.services.TestService;
 
 @RestController
+@Log4j2
 public class TestController {
 	
 	
@@ -28,6 +27,7 @@ public class TestController {
 		super();
 		this.testService = testService;
 		this.testService2 = testService2;
+		log.info("Object Test Controller created");
 	}
 
 	//@RequestMapping(path = "/hello",method = RequestMethod.GET)
