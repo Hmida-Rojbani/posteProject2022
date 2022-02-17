@@ -1,8 +1,13 @@
 package tn.poste.projet.controllers;
 
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,9 +29,11 @@ public class ClientCtrl {
 		return clientService.addClient(req);
 	}
 	
-	@ExceptionHandler(ClientSaveException.class)
-	public ResponseEntity<String> handleClientSaveException(ClientSaveException e){
-		return new ResponseEntity<String>("Error in Saving client : " +e.getMessage(), HttpStatus.BAD_REQUEST);
+	@GetMapping("/api/clients")
+	public List<ClientRes> getAllClient(){
+		return clientService.getAllClient();
 	}
+	
+	
 }
 

@@ -1,5 +1,8 @@
 package tn.poste.projet.services;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +32,15 @@ public class ClientService {
 		}
 			
 		return mapper.map(clientEntity, ClientRes.class);
+	}
+
+	public List<ClientRes> getAllClient() {
+		ModelMapper mapper= new ModelMapper();
+		
+		return clientRepository.findAll()
+				.stream()
+				.map(ce-> mapper.map(ce,ClientRes.class))
+				.collect(Collectors.toList());
 	}
 
 }
