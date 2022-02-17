@@ -18,12 +18,12 @@ import tn.poste.projet.repositories.ClientRepository;
 public class ClientService {
 	
 	private ClientRepository clientRepository;
+	private ModelMapper mapper;
 	
 	public ClientRes addClient(ClientReq req) {
 //		ClientEntity clientEntity = new ClientEntity();
 //		clientEntity.setNom(req.getNom());
 //		clientEntity.setPrenom(req.getPrenom());
-		ModelMapper mapper= new ModelMapper();
 		ClientEntity clientEntity = mapper.map(req, ClientEntity.class);
 		try {
 			clientRepository.save(clientEntity);	
@@ -35,7 +35,6 @@ public class ClientService {
 	}
 
 	public List<ClientRes> getAllClient() {
-		ModelMapper mapper= new ModelMapper();
 		
 		return clientRepository.findAll()
 				.stream()
