@@ -1,6 +1,7 @@
 package tn.poste.projet.entities;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -33,5 +34,14 @@ public class ClientEntity {
 	
 	@OneToMany(mappedBy = "client")
 	private List<TicketEntity> tickets;
+	
+	public String getNomComplet() {
+		return this.prenom + " " + this.nom;
+	}
+	
+	public int getAge() {
+		return (int) ChronoUnit.YEARS
+		.between(dateDeNaissance, LocalDate.now());
+	}
 	
 }
