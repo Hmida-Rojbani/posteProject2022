@@ -27,11 +27,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.cors().disable();
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().antMatchers("/login/**","/registerUser/**","/registerFour/**","/swagger-ui.html/**","/webjars/**","/v2/api-docs","/swagger-resources/**").permitAll();
-        http.authorizeRequests().antMatchers("/appUsers/**","/appRoles/**").hasAuthority("ADMIN");
-        http.authorizeRequests().anyRequest().authenticated();
-        http.addFilter(new JWTAuthenticationFilter(authenticationManager()));
-        http.addFilterBefore(new JWTAuthorizationFiler(), UsernamePasswordAuthenticationFilter.class);
+        http.authorizeRequests().antMatchers("/**").permitAll();
+//        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//        http.authorizeRequests().antMatchers("/login/**","/registerUser/**","/registerFour/**","/swagger-ui.html/**","/webjars/**","/v2/api-docs","/swagger-resources/**").permitAll();
+//        http.authorizeRequests().antMatchers("/appUsers/**","/appRoles/**").hasAuthority("ADMIN");
+//        http.authorizeRequests().anyRequest().authenticated();
+//        http.addFilter(new JWTAuthenticationFilter(authenticationManager()));
+//        http.addFilterBefore(new JWTAuthorizationFiler(), UsernamePasswordAuthenticationFilter.class);
     }
 }

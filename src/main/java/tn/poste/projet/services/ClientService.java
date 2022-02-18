@@ -1,6 +1,7 @@
 package tn.poste.projet.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -10,6 +11,7 @@ import lombok.AllArgsConstructor;
 import tn.poste.projet.dto.ClientReq;
 import tn.poste.projet.dto.ClientRes;
 import tn.poste.projet.entities.ClientEntity;
+import tn.poste.projet.errors.ClientNotFoundException;
 import tn.poste.projet.errors.ClientSaveException;
 import tn.poste.projet.repositories.ClientRepository;
 
@@ -42,4 +44,19 @@ public class ClientService {
 				.collect(Collectors.toList());
 	}
 
+	public ClientRes getClientById(int id) {
+		Optional<ClientEntity> opt = clientRepository.findById(id);
+		
+		ClientEntity clientEntity = opt
+				.orElseThrow(ClientNotFoundException::new);
+		return mapper.map(clientEntity, ClientRes.class);
+	}
+	
+	public ClientRes getClientByEmail(String email) {
+		Optional<ClientEntity> opt = clientRepository.findByEmail(email);
+		
+		ClientEntity clientEntity = opt
+				.orElseThrow(ClientNotFoundException::new);
+		return mapper.map(clientEntity, ClientRes.class);
+	}
 }
