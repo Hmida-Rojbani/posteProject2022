@@ -1,5 +1,6 @@
 package tn.poste.projet.services;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -58,5 +59,12 @@ public class ClientService {
 		ClientEntity clientEntity = opt
 				.orElseThrow(ClientNotFoundException::new);
 		return mapper.map(clientEntity, ClientRes.class);
+	}
+	
+	public List<ClientRes> getClientByDateBetween(LocalDate begin, LocalDate end) {
+		return  clientRepository.dateBetween(begin, end).stream()
+				.map(ce-> mapper.map(ce,ClientRes.class))
+				.collect(Collectors.toList());
+		
 	}
 }
