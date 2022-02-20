@@ -31,36 +31,36 @@ public class TestController {
 	}
 
 	//@RequestMapping(path = "/hello",method = RequestMethod.GET)
-	@GetMapping({"/","/hello"})
+	@GetMapping({"/api","/api/hello"})
 	public String helloWorld() {
 		return testService.hello();
 	}
 	
-	@GetMapping("/hello2")
+	@GetMapping("/api/hello2")
 	public String helloWorld2() {
 		return testService2.hello();
 	}
 	
 	//@RequestMapping(path = "/hello",method = RequestMethod.GET)
-		@GetMapping({"/hello/{name}"})
+		@GetMapping({"/api/hello/{name}"})
 		public String helloWorld2(@PathVariable("name") String nom) {
 			return testService2.hello(nom);
 		}
 	
 	//@RequestMapping(path = "/hello",method = RequestMethod.POST)
-	@PostMapping("/hello")
+	@PostMapping("/api/hello")
 	public String helloWorldPost() {
 		return "Hello World Post!";
 	}
 	
-	@GetMapping("/data")
+	@GetMapping("/api/data")
 	public ResponseEntity<Data> getData() {
 		Data d = new Data();
 		d.age=33; d.name= "Ali";
 		return new ResponseEntity<Data>(d, HttpStatus.NOT_FOUND);
 	}
 	
-	@PostMapping("/data")
+	@PostMapping("/api/data")
 	public ResponseEntity<Data> postData(@RequestBody Data d) {
 		
 		return new ResponseEntity<Data>(d, HttpStatus.ACCEPTED);

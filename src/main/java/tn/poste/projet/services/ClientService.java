@@ -54,11 +54,8 @@ public class ClientService {
 	}
 	
 	public ClientRes getClientByEmail(String email) {
-		Optional<ClientEntity> opt = clientRepository.findByEmail(email);
-		
-		ClientEntity clientEntity = opt
-				.orElseThrow(ClientNotFoundException::new);
-		return mapper.map(clientEntity, ClientRes.class);
+		return mapper.map(clientRepository.findByEmail(email)
+				.orElseThrow(ClientNotFoundException::new), ClientRes.class);
 	}
 	
 	public List<ClientRes> getClientByDateBetween(LocalDate begin, LocalDate end) {

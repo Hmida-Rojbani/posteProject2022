@@ -23,5 +23,13 @@ public class ClientReq {
 	private String email;
 	@Pattern(regexp = "^[0-9]{8,}$")
 	private String telephone;
+	
+	public void setDate(String date) {
+		this.dateDeNaissance = LocalDate.parse(date);
+	}
+	
+	public String getDate() {
+		return null;
+	}
 
 }
